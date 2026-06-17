@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Notes App – Next.js Full Stack CRUD
 
-## Getting Started
+A simple full-stack Notes Application built with the Next.js App Router. This project demonstrates how to build both the frontend and backend within a single Next.js application using Route Handlers.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* Create notes
+* View notes
+* Edit notes
+* Delete notes
+* Dynamic API routes
+* Client-side data fetching
+* Component-based architecture
+
+---
+
+## Tech Stack
+
+* Next.js (App Router)
+* React
+* JavaScript
+* Route Handlers (API Routes)
+
+---
+
+## Project Structure
+
+```txt
+app/
+│
+├── page.jsx
+│
+├── api/
+│   └── notes/
+│       ├── route.js
+│       └── [id]/
+│           └── route.js
+│
+├── components/
+│   ├── NoteForm.jsx
+│   └── NotesList.jsx
+│
+└── data/
+    └── notes.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### GET /api/notes
 
-## Learn More
+Returns all notes.
 
-To learn more about Next.js, take a look at the following resources:
+Example Response:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```json
+[
+  {
+    "id": 1,
+    "title": "Learn Next.js"
+  }
+]
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### POST /api/notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Creates a new note.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Request Body:
+
+```json
+{
+  "title": "Learn Route Handlers"
+}
+```
+
+---
+
+### PUT /api/notes/[id]
+
+Updates an existing note.
+
+Request Body:
+
+```json
+{
+  "title": "Updated Title"
+}
+```
+
+---
+
+### DELETE /api/notes/[id]
+
+Deletes a note by ID.
+
+---
+
+## Concepts Learned
+
+### App Router
+
+* Folder-based routing
+* Route Handlers
+* Dynamic routes using `[id]`
+
+### React
+
+* useState
+* useEffect
+* Component composition
+* Lifting state up
+* Props
+
+### Full Stack Development
+
+* GET requests
+* POST requests
+* PUT requests
+* DELETE requests
+* Request and Response objects
+* JSON data exchange
+* Client-to-server communication using Fetch API
+
+---
+
+## Data Flow
+
+```txt
+User Action
+    ↓
+Client Component
+    ↓
+fetch()
+    ↓
+API Route Handler
+    ↓
+Data Update
+    ↓
+Response.json()
+    ↓
+Refresh Notes
+    ↓
+UI Re-renders
+```
+
+---
+
+## Notes
+
+This project uses an in-memory JavaScript array as a temporary data store. Data resets when the development server restarts.
+
+In a production application, the notes would be stored in a database such as PostgreSQL or MongoDB using an ORM like Prisma.
+
+---
+
+## Learning Outcome
+
+This project helped me understand how Next.js can be used as a full-stack framework by combining frontend React components and backend API Route Handlers within a single codebase.

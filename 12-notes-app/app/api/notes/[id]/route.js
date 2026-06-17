@@ -21,3 +21,24 @@ export async function DELETE(request,{params}) {
 
     return Response.json({success:true})
 }
+
+
+export async function PUT(request,{params}){
+    const {id}=await params;
+
+    const nid=Number(id);
+
+    const body=await request.json();
+
+    const note=notes.find((note)=>note.id===nid);
+
+    if(!note){
+        return Response.json(
+            {error:"Note not found"},
+            {status: 404}
+        )
+    }
+    note.title=body.title;
+
+    return Response.json(note);
+}
